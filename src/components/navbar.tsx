@@ -7,7 +7,7 @@ import Link from 'next/link'
 
 export default function Navbar() {
   return (
-    <NavigationMenu.Root className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm px-6 py-4">
+    <NavigationMenu.Root className="sticky top-0 left-0 right-0 z-50 bg-white shadow-sm px-6 py-4">
       <NavigationMenu.List className="flex gap-6 items-center">
         <NavigationMenu.Item>
           <NavigationMenu.Link asChild>
