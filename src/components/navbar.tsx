@@ -1,5 +1,3 @@
-// src/components/Navbar.tsx
-
 'use client'
 
 import * as NavigationMenu from '@radix-ui/react-navigation-menu'
@@ -19,14 +17,6 @@ export default function Navbar() {
 
         <NavigationMenu.Item>
           <NavigationMenu.Link asChild>
-            <Link href="/about" className="text-gray-800 hover:text-blue-600 font-medium">
-              About
-            </Link>
-          </NavigationMenu.Link>
-        </NavigationMenu.Item>
-
-        <NavigationMenu.Item>
-          <NavigationMenu.Link asChild>
             <Link href="/projects" className="text-gray-800 hover:text-blue-600 font-medium">
               Projects
             </Link>
@@ -35,11 +25,12 @@ export default function Navbar() {
 
         <NavigationMenu.Item>
           <NavigationMenu.Link asChild>
-            <Link href="/contact" className="text-gray-800 hover:text-blue-600 font-medium">
-              Contact
+            <Link href="/blog" className="text-gray-800 hover:text-blue-600 font-medium">
+              Blog
             </Link>
           </NavigationMenu.Link>
         </NavigationMenu.Item>
+
       </NavigationMenu.List>
     </NavigationMenu.Root>
   )
