@@ -48,15 +48,34 @@ export default function Home() {
                   Read the full article →
                 </a>
               </div>
+
+              {/* Latest Project Card */}
+              <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-orange-500">
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">Latest Project</h3>
+                <h4 className="text-lg font-bold text-gray-900 mb-3">Collision Avoidance RL Agent</h4>
+                <p className="text-gray-600 mb-4 text-sm leading-relaxed">
+                  A collision avoidance RL agent built with stable-baselines3 and openai gym.
+                </p>
+                <a 
+                  href="/projects" 
+                  className="inline-flex items-center text-orange-600 hover:text-orange-800 font-medium text-sm"
+                >
+                  View project details →
+                </a>
+              </div>
             </div>
               
               {/* Right Content */}
               <div className="lg:w-2/3 space-y-6">
                 <h1 className="text-5xl font-bold text-gray-900">About Me</h1>
                 <p className="text-xl text-gray-600 leading-relaxed">
-                  I'm a passionate software engineer with over 3 years of experience building 
-                  accessible, data-driven web applications. I specialize in Machine Learning, Data Engineering,
-                  and Application Development.
+                  I'm a passionate engineer with over 3 years of experience building 
+                  accessible, data-driven web applications. I'm currently studying Computer Science at Georgia Tech and specialize in 
+                  data engineering, ML, and application development, but have a history of working with other technologies like 
+                  building 3D printers, training neural networks, and building drones.
+                  
+
+                  Outside of work and school, I enjoy yoga, golf, and traveling with friends.
                 </p>
                 <p className="text-lg text-gray-600 leading-relaxed">
                 </p>
@@ -73,8 +92,12 @@ export default function Home() {
                 <div className="pt-4">
                   <h3 className="text-2xl font-semibold text-gray-900 mb-4">Roles</h3>
                   <p className="text-lg text-gray-600 leading-relaxed">
-                    I've worked in a variety of roles, from software engineer to data engineer to machine learning engineer.
-                    Senior Member of Technical Staff Network Engineer
+                    My work at AT&T has involved a broad stroke of technologies centered around software, data, machine learning, and Large Language Models.
+                    I've work with Big Data Management and Application Development on Palantir's foundry platform. I've worked on LLM applications using 
+                    Langchain and Langgraph, and set up web applications using Next.js, NestJS, and Streamlit. 
+
+                    Outside of work, I work on personal projects to furhur refine my skills like training neural networks, building 3D printers, working
+                    with LLM web applications. Check out my projects page for more details!
                   </p>
                 </div>
                 <div className="pt-4">

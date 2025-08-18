@@ -16,8 +16,8 @@ export default function Projects() {
       title: "Collision Avoidance RL Agent",
       description: "A collision avoidance RL agent that uses a DQN algorithm to navigate a 2D environment.",
       technologies: ["Python", "PyTorch", "Gymnasium", "RLlib", "TensorBoard"],
-      github: "https://github.com/example/ecommerce",
-      live: "https://ecommerce-demo.com",
+      github: "https://github.com/JackH11/collision_avoidance",
+      live: "",
       image: "/images/ecommerce-preview.jpg",
       year: "2025"
     }

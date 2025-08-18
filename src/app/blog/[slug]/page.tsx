@@ -19,23 +19,24 @@ const blogPosts = {
       <p class="text-lg text-gray-700 leading-relaxed mb-8">
       Convolutional Neural Networks (CNNs) are a core component of modern day AI advancements, and excel in areas of spatial recognition, speech, or audio signals, 
       where the model needs to understand the importance of a feature in the context of the other features around it. 
-      Low-level, think about how the color at a single point in an image is closely related to the points directly around it. 
-      High level, think about how the meaning of a word can be enriched by the words around it in the same sentence, or 
+      On a low level, think about how the color at a single point in an image is closely related to the points directly around it. 
+      On a higher level, think about how the meaning of a word can be enriched by the words around it in the same sentence, or 
       how a person's face can be identified by all the features; eyes, nose, mouth, etc, in relation to each other. Convolutional Neural Networks 
-      excel at identifying how smaller components near each other spatially come together to form a more complex pattern.
+      excel at identifying how smaller components near each other come together to form a more complex pattern.
       </p>
 
-      <h2 class="text-3xl font-bold text-gray-900 mb-4">What are Convolutional Neural Networks?</h2>
-      <p class="text-lg text-gray-700 leading-relaxed mb-8">Neural Networks are built with many layers on top of each other. For reference, 
-      modern day large language models have 100 or more layers (<a href="https://oecs.mit.edu/pub/zp5n8ivs/release/1" class="text-blue-600 hover:text-blue-800">source</a>). 
-      Other common CNN models use 5 convolutional layers to derive insights (<a href="https://developer.nvidia.com/blog/deep-learning-self-driving-cars" class="text-blue-600 hover:text-blue-800">source</a>). 
-      The early layers start by recognizing small features, like colors or edges, then gain in complexity to eventually make up something as complicated as a car, 
-      disease, or human face. </p>
+      <h2 class="text-3xl font-bold text-gray-900 mb-4">What are Neural Networks?</h2>
+      <p class="text-lg text-gray-700 leading-relaxed mb-8">Neural Networks are what power modern day AI, and are built with many computational layers on top of each other that 
+      cascade information. For reference, modern day large language models have 100 or more layers (<a href="https://oecs.mit.edu/pub/zp5n8ivs/release/1" class="text-blue-600 hover:text-blue-800">source</a>). 
+      Popular open-source CNN models use 5 convolutional layers to derive insights (<a href="https://developer.nvidia.com/blog/deep-learning-self-driving-cars" class="text-blue-600 hover:text-blue-800">source</a>). 
+      In a CNN model, the early layers start by recognizing small features, like colors or edges, then gain in complexity to eventually make up something as complicated as a car, 
+      disease, or human face. To understand the basics of CNNs, let's look at how a single part of a single layer works.</p>
       
-      <h2 class="text-3xl font-bold text-gray-900 mb-4">How Do they Work?</h2>
-      <p class="text-lg text-gray-700 leading-relaxed mb-8">The computer starts with a normal image and made up of pixels, which can be represented 
-      as individual numbers in a grid like in figure 1a. The CNN looks at small sections of the image at a time, 
-      like taking a magnifying to the image. The numbers are outlined in figure 1b. 
+      <h2 class="text-3xl font-bold text-gray-900 mb-4">CNN Layer</h2>
+      <p class="text-lg text-gray-700 leading-relaxed mb-8">
+      The computer starts with a normal grid-like input (<strong>Matrix</strong>) made up of numbers, which could represent the
+      individual pixels of an image. Look at figure 1a for reference. The CNN intakes small sections of the image at a time, 
+      like if you were to take a magnifying glass and slide it across the image. A snapshot view in this example is shown in figure 1b. 
       </p>
       
       <div class="my-8">
@@ -63,10 +64,10 @@ const blogPosts = {
         </div>
       </div>
       <p class="text-lg text-gray-700 leading-relaxed mb-8">
-      Now that we have a specific section of the image, also refferred to as a <strong>Receptive Field</strong> in figure 1a, a <strong>Filter</strong> is then applied at that specific 
-      section of the image and called a <strong>Kernel</strong>. The values of this filter is up to the neural
-      network to determine, but I've included a simple example in figure 2b. The filter (or Kernel) is then used to transform the receptive field
-      by simply multipling the individual elements of the grids together.
+      Now that we have a specific section of the image, also refferred to as a <strong>Receptive Field</strong> in figure 1b, a <strong>Filter</strong> is then applied at that specific 
+      section of the image and called a <strong>Kernel</strong>. The values of this filter are determined by the neural
+      network and perfected through training. I've included a simple example in figure 2b to illustruate what a filter might contain. The <strong>Filter</strong> (or <strong>Kernel</strong>) 
+      is then used to transform the receptive field by simply multipling the individual elements of the grids together.
       </p>
       <div class="my-8">
         <div class="flex justify-center items-start gap-8">
@@ -94,9 +95,10 @@ const blogPosts = {
       </div>
       
       <p class="text-lg text-gray-700 leading-relaxed mb-8">
-      By multipling each number in the receptive field by the corresponding number in the filter, we get the output matrix. Think 1x1 + 0x1 + 1*1 ... 
-      Each multiplication of the two grids is summed to get a final output. The red box in the first image can be shifted three times to create a total
-      of four outputs. We thus end up with four outputs, each corresponding to a different part of the image.
+      Figure 2a shows the receptive field capture from figure 1b.By multipling each number in the receptive field by the corresponding number in the filter, we get the output matrix. 
+      Think 1x1, 0x1, 1*1 ... 
+      After all the numbers are multiplied in the two grids is summed to get a final output. The red box in the first image can be shifted three times to create a total
+      of four outputs. We thus end up with grid of four outputs, each corresponding to a different part of the image.
       </p>
       <div class="my-8">
         <div class="flex justify-center items-start gap-8">
@@ -118,23 +120,26 @@ const blogPosts = {
       <p class="text-lg text-gray-700 leading-relaxed mb-8">
       This output matrix is very simple, being only four numbers, and doesn't tell us or the computer very much. By itself, a single output (<strong>neuron</strong>) 
       won’t get you very far. By drastically increasing the number of inputs, filters, and computations, the neural network can begin to deduce something meaningful.
-      Hence, the rush in tech companies to scale up hardware and compute. Add enough filters and a car just might be able to drive itself (of course this is drastric 
-      oversimplification) A well-built CNN will be able to derive insights from these values.
+      Tech companies building AI models are rushing to scale up hardware and compute. Add enough filters and a car just might be able to drive itself (drastric 
+      oversimplification). A well-built CNN will be able to derive insights from these values.
       In a real AI system like those found in Modern Day self-driving cars and Medical diagnostic images, there would be tens of millions of these outputs stacked 
-      horizontally to span the image or on top of each other to create something useful. AiDoc uses CNNs to assess medical X-ray images and search for disease, 
-      or bone fractures (<a href="https://www.aidoc.com/learn/blog/how-ai-algorithms-work-on-x-rays/" class="text-blue-600 hover:text-blue-800">source</a>).
+      horizontally to span the image or on top of each other to create something useful. AiDoc is a real-world example of a company that uses CNNs to assess medical X-ray 
+      images and search for disease, or bone fractures (<a href="https://www.aidoc.com/learn/blog/how-ai-algorithms-work-on-x-rays/" class="text-blue-600 hover:text-blue-800">source</a>).
       </p>
       <h2 class="text-3xl font-bold text-gray-900 mb-4">Limitations</h2>
       <p class="text-lg text-gray-700 leading-relaxed mb-8">What are the requirements and limitations? Neural networks tend to lack interpretability. 
       As demonstrated above, it’s hard to express why a -4, (or a much large combination of numbers) might be relevant to predicting the task. 
-      In line with standard Neural Networks, CNN’s are data-hungry, meaning they require millions of labels to derive meaningful insights from the inputs. 
-      Waymo, the fast-growing self-driving car company, mentions CNN’s as a standard architecture, but that they require a lot of computation and time 
+      In line with standard Neural Networks, CNN’s are data-hungry, meaning they require millions of labels to derive meaningful insights from the inputs.
+      And can take a lot of time to train and query.
+      Waymo, the fast-growing self-driving car company, mentions CNN’s as a standard architecture, but their intense demand hurts their candidacy for
+      being the prime architecture for self-driving cars.
       (<a href="https://waymo.com/blog/2020/05/vectornet" class="text-blue-600 hover:text-blue-800">source</a>). 
       </p>
       <h2 class="text-3xl font-bold text-gray-900 mb-4">Conclusion</h2>
       <p class="text-lg text-gray-700 leading-relaxed mb-8">CNNs are made up of many simple components, that when combined, can begin to understand complex patterns
-      within an image or other dataset that's spatially organized. To derive meaningful output, many of these computations need to be repeated and tuned, hence the
-      rush in tech companies to scale up hardware and compute.
+      within an image or other dataset that's spatially organized. Many of these computations need to be repeated, tuned, and carefully monitored during 
+      the training phase. This intense demand for compute is what's driving AIchip companies valuations' to soar and a the rush 
+      of tech companies to scale up AI infrastructure.
       </p>
     `
   }
