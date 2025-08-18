@@ -57,7 +57,7 @@ export default function Home() {
                   A collision avoidance RL agent built with stable-baselines3 and openai gym.
                 </p>
                 <a 
-                  href="/projects" 
+                  href="/projects/collision-avoidance-rl-agent" 
                   className="inline-flex items-center text-orange-600 hover:text-orange-800 font-medium text-sm"
                 >
                   View project details →

@@ -2,6 +2,7 @@
 
 import * as Tooltip from '@radix-ui/react-tooltip'
 import { useState } from 'react'
+import Link from 'next/link'
 
 export default function Projects() {
   const [selectedLayout, setSelectedLayout] = useState<'vertical'>('vertical');
@@ -18,8 +19,9 @@ export default function Projects() {
       technologies: ["Python", "PyTorch", "Gymnasium", "RLlib", "TensorBoard"],
       github: "https://github.com/JackH11/collision_avoidance",
       live: "",
-      image: "/images/ecommerce-preview.jpg",
-      year: "2025"
+      image: "",
+      year: "2025",
+      slug: "collision-avoidance-rl-agent"
     }
   ]
 
@@ -96,24 +98,22 @@ export default function Projects() {
                       <Tooltip.Provider>
                         <Tooltip.Root>
                           <Tooltip.Trigger asChild>
-                            <a 
-                              href={project.live}
-                              target="_blank" 
-                              rel="noopener noreferrer"
+                            <Link 
+                              href={`/projects/${project.slug}`}
                               className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2"
                             >
                               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                               </svg>
                               See More
-                            </a>
+                            </Link>
                           </Tooltip.Trigger>
                           <Tooltip.Portal>
                             <Tooltip.Content 
                               className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm"
                               sideOffset={5}
                             >
-                              View Live Demo
+                              View Project Details
                               <Tooltip.Arrow className="fill-gray-900" />
                             </Tooltip.Content>
                           </Tooltip.Portal>
