@@ -13,36 +13,28 @@ export default function ProjectDetail() {
     title: "Collision Avoidance RL Agent",
     description: "A collision avoidance RL agent that uses a DQN algorithm to navigate a 2D environment.",
     longDescription: `
-      This project implements a Deep Q-Network (DQN) reinforcement learning agent designed to navigate 
-      a 2D environment while avoiding obstacles. The agent learns optimal navigation strategies through 
-      trial and error, receiving rewards for successful navigation and penalties for collisions.
-      
-      The implementation uses PyTorch for the neural network architecture and Gymnasium for the 
-      environment simulation. The agent demonstrates effective learning of collision avoidance 
-      behaviors over multiple training episodes.
+      The goal of this project was for a reinforcement learning agent to learn how to navigate in a 2D environment
+      towards a goal. The goal, the agent, and the obstacls could start at any position in the environment. 
+
+      To achieve this, I used StableBaselines3 for the reinfocement learning agent and OpenAIs gymnasium to generate
+      and train the agent. I tried used both DQN and PPO models to build the agent. The number of obstacles was variable,
+      but for most of training, I used 10 obstacles to give the agent plenty of opportunity to learn while moving around
+      them.
     `,
-    technologies: ["Python", "PyTorch", "Gymnasium", "RLlib", "TensorBoard"],
+    technologies: ["Python", "PyTorch", "Gymnasium", "TensorBoard", "StableBaselines3"],
     github: "https://github.com/JackH11/collision_avoidance",
     live: "",
     image: "",
     year: "2025",
-    features: [
-      "DQN algorithm implementation",
-      "2D environment simulation",
-      "Collision detection and avoidance",
-      "Training visualization with TensorBoard",
-      "Configurable reward functions"
-    ],
     challenges: [
-      "Balancing exploration vs exploitation",
-      "Designing effective reward functions",
-      "Optimizing neural network architecture",
-      "Handling sparse reward scenarios"
+      "Observation Space",
+      "Is a wall just a non-moving obstacle?",
+      "Reward Shaping",
+      "On Policy vs Off Policy training",
     ],
     results: [
       "Successfully learned collision avoidance in 2D environments",
-      "Achieved 85% success rate in obstacle navigation",
-      "Reduced collision rate by 70% compared to random navigation"
+      "Achieved 70% success rate in obstacle navigation with 10 obstacles",
     ]
   }
 
@@ -114,6 +106,39 @@ export default function ProjectDetail() {
 
         {/* Project Details */}
         <div className="space-y-8">
+          {/* Project Demo Video */}
+          <div className="bg-white rounded-xl shadow-lg p-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">Project Demo</h2>
+            <div className="flex items-center justify-center gap-6 mb-4">
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                <span className="text-gray-600">Agent</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full bg-gray-400"></div>
+                <span className="text-gray-600">Obstacle</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                <span className="text-gray-600">Goal</span>
+              </div>
+            </div>
+            <div className="flex justify-center">
+              <video
+                src="/agent_play.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                width="640"
+                height="480"
+                className="rounded-lg"
+              >
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+
           {/* Long Description */}
           <div className="bg-white rounded-xl shadow-lg p-8">
             <h2 className="text-2xl font-bold text-gray-900 mb-4">Project Overview</h2>
@@ -122,21 +147,6 @@ export default function ProjectDetail() {
                 <p key={index} className="mb-4">{paragraph.trim()}</p>
               ))}
             </div>
-          </div>
-
-          {/* Key Features */}
-          <div className="bg-white rounded-xl shadow-lg p-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Key Features</h2>
-            <ul className="space-y-2">
-              {project.features.map((feature, index) => (
-                <li key={index} className="flex items-start">
-                  <svg className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                  </svg>
-                  <span className="text-gray-600">{feature}</span>
-                </li>
-              ))}
-            </ul>
           </div>
 
           {/* Challenges */}
