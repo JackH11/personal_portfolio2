@@ -103,13 +103,11 @@ export default function Home() {
                 </div>
                 <div className="pt-4">
                   <h3 className="text-2xl font-semibold text-gray-900 mb-4">My Thoughts</h3>
-                  <p className="text-lg text-gray-600 leading-relaxed">
                     <ul className="text-lg text-gray-600 leading-relaxed space-y-2">
                       <li>• Stay focused on a product's end goal. It's easy to lose focus and build something that works but doesn't fit the problem</li>
                       <li>• Peoples' time and attention are limited resources. Communicate your ideas concisely.</li>
                       <li>• Good practices become good habits and good habits compound overtime. Prioritze doing good work over fast work.</li>
                     </ul>
-                  </p>
                 </div>
                 <div className="pt-4">
                   <h3 className="text-2xl font-semibold text-gray-900 mb-4">Contact Me</h3>

@@ -2,10 +2,12 @@
 
 import { useParams } from 'next/navigation'
 import Link from 'next/link'
+import { useState, useEffect } from 'react'
 
 export default function ProjectDetail() {
   const params = useParams()
   const slug = params.slug
+  const [activeTab, setActiveTab] = useState('fully-trained')
 
   // This would typically fetch project data based on the slug
   // For now, I'll create a sample project structure
@@ -13,13 +15,7 @@ export default function ProjectDetail() {
     title: "Collision Avoidance RL Agent",
     description: "A collision avoidance RL agent that uses a DQN algorithm to navigate a 2D environment.",
     longDescription: `
-      The goal of this project was for a reinforcement learning agent to learn how to navigate in a 2D environment
-      towards a goal. The goal, the agent, and the obstacls could start at any position in the environment. 
-
-      To achieve this, I used StableBaselines3 for the reinfocement learning agent and OpenAIs gymnasium to generate
-      and train the agent. I tried used both DQN and PPO models to build the agent. The number of obstacles was variable,
-      but for most of training, I used 10 obstacles to give the agent plenty of opportunity to learn while moving around
-      them.
+      
     `,
     technologies: ["Python", "PyTorch", "Gymnasium", "TensorBoard", "StableBaselines3"],
     github: "https://github.com/JackH11/collision_avoidance",
@@ -37,6 +33,36 @@ export default function ProjectDetail() {
       "Achieved 70% success rate in obstacle navigation with 10 obstacles",
     ]
   }
+
+  const videoTabs = [
+    {
+      id: 'medium-training',
+      label: 'During Training',
+      video: '/agent_medium_training.mp4',
+      description: 'Agent behavior after moderate training'
+    },
+    {
+      id: 'fully-trained',
+      label: 'Fully Trained',
+      video: '/agent_play.mp4',
+      description: 'Agent behavior after complete training'
+    }
+  ]
+
+  const currentVideo = videoTabs.find(tab => tab.id === activeTab)
+
+  // Auto-rotate tabs every 15 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveTab(current => {
+        const currentIndex = videoTabs.findIndex(tab => tab.id === current)
+        const nextIndex = (currentIndex + 1) % videoTabs.length
+        return videoTabs[nextIndex].id
+      })
+    }, 15000) // 15 seconds
+
+    return () => clearInterval(interval)
+  }, [])
 
   return (
     <section className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 py-20 px-4">
@@ -93,7 +119,7 @@ export default function ProjectDetail() {
                 href={project.live}
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="bg-orange-600 text-white px-6 py-3 rounded-lg hover:bg-orange-700 transition-colors flex items-center gap-2"
+                className="bg-orange-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
@@ -106,9 +132,16 @@ export default function ProjectDetail() {
 
         {/* Project Details */}
         <div className="space-y-8">
-          {/* Project Demo Video */}
+          {/* Project Demo Video with Tabs */}
           <div className="bg-white rounded-xl shadow-lg p-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Project Demo</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">Training Progress Demo</h2>
+            
+            {/* Tab Description */}
+            <p className="text-gray-600 text-center mb-4 italic">
+              {currentVideo?.description}
+            </p>
+
+            {/* Legend */}
             <div className="flex items-center justify-center gap-6 mb-4">
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 rounded-full bg-red-500"></div>
@@ -123,9 +156,12 @@ export default function ProjectDetail() {
                 <span className="text-gray-600">Goal</span>
               </div>
             </div>
-            <div className="flex justify-center">
+
+            {/* Video Player */}
+            <div className="flex justify-center mb-6">
               <video
-                src="/agent_play.mp4"
+                key={currentVideo?.video}
+                src={currentVideo?.video}
                 autoPlay
                 loop
                 muted
@@ -137,30 +173,124 @@ export default function ProjectDetail() {
                 Your browser does not support the video tag.
               </video>
             </div>
+
+            {/* Video Tabs */}
+            <div className="flex space-x-1 bg-gray-100 p-1 rounded-lg">
+              {videoTabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`flex-1 px-4 py-2 text-sm font-medium rounded-md transition-colors ${
+                    activeTab === tab.id
+                      ? 'bg-white text-orange-600 shadow-sm'
+                      : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                  }`}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
           </div>
 
           {/* Long Description */}
           <div className="bg-white rounded-xl shadow-lg p-8">
             <h2 className="text-2xl font-bold text-gray-900 mb-4">Project Overview</h2>
             <div className="prose prose-lg text-gray-600 leading-relaxed">
-              {project.longDescription.split('\n').map((paragraph, index) => (
-                <p key={index} className="mb-4">{paragraph.trim()}</p>
-              ))}
+              The goal of this project was to develop a reinforcement learning agent that would learn how to navigate a 2D environment
+              and reach a goal. The goal, the agent, and the obstacles could start at any position in the environment.
+
+              To achieve this, I used StableBaselines3 for the reinfocement learning agent and OpenAIs gymnasium to generate
+              and train the agent. I tried used both DQN and PPO models to build the agent. The number of obstacles was variable,
+              but for most of training, I used 10 obstacles to give the agent plenty of opportunity to learn while moving around
+              them.
             </div>
           </div>
 
           {/* Challenges */}
           <div className="bg-white rounded-xl shadow-lg p-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Challenges & Solutions</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Observation Space</h2>
             <ul className="space-y-2">
-              {project.challenges.map((challenge, index) => (
-                <li key={index} className="flex items-start">
-                  <svg className="w-5 h-5 text-orange-500 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-                  </svg>
-                  <span className="text-gray-600">{challenge}</span>
-                </li>
-              ))}
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">Observation Space Approaches</h3>
+              <p>
+                One of the challenges of this project was the observation space. I thought of two possibe obsercation spaces:
+                1. Develop a grid-like sample of of the environment around the agent. Each grid component would get a
+                encoded value indicating whether the location was a wall, goal, or obstacle. The grid component would also
+                recieve horizontal and vertical velocity information.
+                2. Create rays around the agent that indicate the distance to the nearest wall or obstacle. Also include
+                normal and tangential velocity information of whatever the ray is hitting.
+
+                Option 1 provides more information to the agent and doesn't limit it's vision to what's immediately around it, 
+                since the agent's "vision" woudn't be blocked by the obstacles it hit. Option 2 for included less information
+              </p>
+
+              {/* Observation Space Images */}
+              <div className="mt-6">
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="text-center">
+                    <h4 className="text-md font-medium text-gray-800 mb-2">Grid</h4>
+                    <img 
+                      src="/projects/collision_avoidance/dots.png" 
+                      alt="Grid-based observation space approach"
+                      className="w-full h-auto rounded-lg shadow-md"
+                    />
+                    <p className="text-sm text-gray-600 mt-2">Grid sampling with encoded values for walls, goals, and obstacles</p>
+                  </div>
+                  <div className="text-center">
+                    <h4 className="text-md font-medium text-gray-800 mb-2">Rays</h4>
+                    <img 
+                      src="/projects/collision_avoidance/rays.png" 
+                      alt="Ray-based observation space approach"
+                      className="w-full h-auto rounded-lg shadow-md"
+                    />
+                    <p className="text-sm text-gray-600 mt-2">Ray casting with distance and velocity information</p>
+                  </div>
+                </div>
+              </div>
+
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">Reward Shaping</h3>
+              <p className="mb-4">
+                I had to take careful consideration when shaping the rewards. Natually, I wanted to give the agent a large
+                reward when the goal was reached and a large penalty when the agent hit an obstacle. I found I had to carefully
+                balance the reward and penalty to encourage the agent move quickly towards the goal, but also take the time to avoid
+                obstacles if needed. At a reward of 1000 and collision penalty of -150, I found the agent was not conservative enough
+                and was willing to risk a collision to reach the goal. In a real life scenario like a driverless car, that's no acceptable.
+                I increased the penalty to -500 which yieled and agent that was less willing to risk collision.
+              </p>
+
+              <p className="mb-4">
+                With the above settings, the agent only recieves a reward at the end of the episode. This is tricky for RL algorithms, since
+                for most of the episode the agent recieves 0 feedback. It has little guidance about what's good or bad until it reaches the end.
+                To address this, I implemented a very small reward for moving towards the goal and small penalty for moving away. This gives the
+                agent more signal to learn from. If it's closer to the goal that's generally better!
+              </p>
+
+              <p className="mb-6">
+                Lastly, I included a small time penalty to encourage the agent to move fast.
+              </p>
+
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">On-Policy vs Off-Policy</h3>
+              <p className="mb-4">
+                I tried two reinforcement learning algorithms: DQN and PPO. A core differene is DQN is
+                Off-policy while PPO is on-policy. Off-policy models can learn from any experiences collected at any point in time. 
+                On-policy models only learn from experiences that are collected with the current policy.
+              </p>
+
+              <p className="mb-4">
+                Imagine I was learning to football
+                and had years of training tapes of my plays. Should I study and learn from only my most recent games? Or should I continue to
+                learn from all of my games good or bad over the years. PPO might study from only the most recent, while DQN would study from all of them.
+              </p>
+
+              <p className="mb-4">
+                This makes PPO very sample inefficient, since it throws away a lot of the old data it collected. The benefit of PPO is that the learning
+                is generally more stable since it's learning from it's most recent experiences, which is most likely the best solution.
+              </p>
+
+              <p className="mb-4">
+                I found the PPO model took significantly longer to train than the DQN model, but exhibited stable growth and didn't require fine tuning. 
+                The DQN model requires exploration rate and learning rate schedule to fine tune what they learn and avoid getting stuck in local optima. 
+              </p>
             </ul>
           </div>
 
@@ -168,14 +298,8 @@ export default function ProjectDetail() {
           <div className="bg-white rounded-xl shadow-lg p-8">
             <h2 className="text-2xl font-bold text-gray-900 mb-4">Results & Impact</h2>
             <ul className="space-y-2">
-              {project.results.map((result, index) => (
-                <li key={index} className="flex items-start">
-                  <svg className="w-5 h-5 text-blue-500 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  <span className="text-gray-600">{result}</span>
-                </li>
-              ))}
+              <li>Success rate of <strong>66%</strong> in the final model</li>
+              <li>Reduced average timesteps to completion from <strong>250</strong> to <strong>80</strong></li>
             </ul>
           </div>
         </div>

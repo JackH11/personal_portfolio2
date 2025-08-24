@@ -136,9 +136,8 @@ export default function Projects() {
           <h1 className="text-5xl font-bold text-gray-900 mb-6">My Projects</h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             These are projects I've worked on to showcase my skills in Machine Learning, Data Engineering,
-            and Application Development. Each project includes live demos and GitHub repositories. 
-            I present them to demonstrate my technical abilities, learn new technologies, 
-            and most importantly, to have fun building innovative solutions.
+            and Application Development. Each project includes demos, accomplishments, and a description of
+            some of the technical challenges I faced.
           </p>
         </div>
         {renderLayout()}

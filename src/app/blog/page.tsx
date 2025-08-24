@@ -97,8 +97,7 @@ export default function BlogPage() {
         <div className="text-center mb-16">
           <h1 className="text-5xl font-bold text-gray-900 mb-6">Blog</h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Thoughts, tutorials, and insights on machine learning, data engineering, 
-            and software development. Sharing knowledge and experiences from my journey in tech.
+            My writings on various topics and insights on machine learning, data engineering that interest me.
           </p>
         </div>
 
