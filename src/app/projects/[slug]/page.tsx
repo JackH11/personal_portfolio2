@@ -2,12 +2,10 @@
 
 import { useParams } from 'next/navigation'
 import Link from 'next/link'
-import { useState, useEffect } from 'react'
 
 export default function ProjectDetail() {
   const params = useParams()
   const slug = params.slug
-  const [activeTab, setActiveTab] = useState('fully-trained')
 
   // This would typically fetch project data based on the slug
   // For now, I'll create a sample project structure
@@ -33,36 +31,6 @@ export default function ProjectDetail() {
       "Achieved 70% success rate in obstacle navigation with 10 obstacles",
     ]
   }
-
-  const videoTabs = [
-    {
-      id: 'medium-training',
-      label: 'During Training',
-      video: '/agent_medium_training.mp4',
-      description: 'Agent behavior after moderate training'
-    },
-    {
-      id: 'fully-trained',
-      label: 'Fully Trained',
-      video: '/agent_play.mp4',
-      description: 'Agent behavior after complete training'
-    }
-  ]
-
-  const currentVideo = videoTabs.find(tab => tab.id === activeTab)
-
-  // Auto-rotate tabs every 15 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveTab(current => {
-        const currentIndex = videoTabs.findIndex(tab => tab.id === current)
-        const nextIndex = (currentIndex + 1) % videoTabs.length
-        return videoTabs[nextIndex].id
-      })
-    }, 15000) // 15 seconds
-
-    return () => clearInterval(interval)
-  }, [])
 
   return (
     <section className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 py-20 px-4">
@@ -138,7 +106,7 @@ export default function ProjectDetail() {
             
             {/* Tab Description */}
             <p className="text-gray-600 text-center mb-4 italic">
-              {currentVideo?.description}
+              Watch the agent's learning progress from no training to fully trained
             </p>
 
             {/* Legend */}
@@ -157,38 +125,58 @@ export default function ProjectDetail() {
               </div>
             </div>
 
-            {/* Video Player */}
-            <div className="flex justify-center mb-6">
-              <video
-                key={currentVideo?.video}
-                src={currentVideo?.video}
-                autoPlay
-                loop
-                muted
-                playsInline
-                width="640"
-                height="480"
-                className="rounded-lg"
-              >
-                Your browser does not support the video tag.
-              </video>
+            {/* Videos Side by Side */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-6">
+
+            <div className="text-center">
+                <video
+                  src="/no_training.mp4"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  width="320"
+                  height="240"
+                  className="rounded-lg w-full"
+                >
+                  Your browser does not support the video tag.
+                </video>
+                <p className="text-sm text-gray-600 mt-2">Randomly moving</p>
             </div>
 
-            {/* Video Tabs */}
-            <div className="flex space-x-1 bg-gray-100 p-1 rounded-lg">
-              {videoTabs.map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  className={`flex-1 px-4 py-2 text-sm font-medium rounded-md transition-colors ${
-                    activeTab === tab.id
-                      ? 'bg-white text-orange-600 shadow-sm'
-                      : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
-                  }`}
+             
+            <div className="text-center">
+                <video
+                  src="/during_training.mp4"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  width="320"
+                  height="240"
+                  className="rounded-lg w-full"
                 >
-                  {tab.label}
-                </button>
-              ))}
+                  Your browser does not support the video tag.
+                </video>
+                <p className="text-sm text-gray-600 mt-2">Learning to navigate</p>
+              </div>
+              
+              
+              <div className="text-center">
+                <video
+                  src="/fully_trained.mp4"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  width="320"
+                  height="240"
+                  className="rounded-lg w-full"
+                >
+                  Your browser does not support the video tag.
+                </video>
+                <p className="text-sm text-gray-600 mt-2">Optimal behavior</p>
+              </div>
             </div>
           </div>
 
