@@ -11,7 +11,7 @@ const blogPosts = {
     excerpt: "A simple introduction to CNNs, exploring their architecture, applications, and implementation details.",
     author: "Jack Hasselbring",
     date: "August 12, 2025",
-    readTime: "10 min read",
+    readTime: "5 min read",
     category: "Deep Learning",
     tags: ["Deep Learning", "Neural Networks", "CNN"],
     content: `
