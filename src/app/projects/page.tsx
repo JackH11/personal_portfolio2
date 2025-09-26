@@ -31,10 +31,10 @@ export default function Projects() {
         return (
           <div className="max-w-4xl mx-auto space-y-8 mb-16">
             {projects.map((project) => (
-              <div key={project.id} className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group">
+              <div key={project.id} className="bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group">
                 <div className="flex flex-col lg:flex-row">
                   {/* Left: Image */}
-                  <div className="lg:w-1/3 relative h-64 lg:h-auto bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                  <div className="lg:w-1/3 relative h-64 lg:h-auto bg-gradient-to-br from-blue-500 to-purple-600 dark:from-blue-600 dark:to-purple-700 flex items-center justify-center">
                     <div className="text-white text-center p-6">
                       <svg className="w-16 h-16 mx-auto mb-4 opacity-80" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
@@ -46,13 +46,13 @@ export default function Projects() {
                   {/* Right: Content */}
                   <div className="lg:w-2/3 p-6">
                     <div className="flex justify-between items-start mb-4">
-                      <h3 className="text-2xl font-bold text-gray-900 lg:hidden">{project.title}</h3>
-                      <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
+                      <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 lg:hidden">{project.title}</h3>
+                      <span className="bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-3 py-1 rounded-full text-sm font-medium">
                         {project.year}
                       </span>
                     </div>
                     
-                    <p className="text-gray-600 mb-4 leading-relaxed">
+                    <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
                       {project.description}
                     </p>
                     
@@ -60,7 +60,7 @@ export default function Projects() {
                       {project.technologies.map((tech, index) => (
                         <span 
                           key={index}
-                          className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium"
+                          className="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-3 py-1 rounded-full text-sm font-medium"
                         >
                           {tech}
                         </span>
@@ -130,11 +130,11 @@ export default function Projects() {
   };
 
   return (
-    <section className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 py-20 px-4">
+    <section className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 py-20 px-4">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <h1 className="text-5xl font-bold text-gray-900 mb-6">My Projects</h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <h1 className="text-5xl font-bold text-gray-900 dark:text-gray-100 mb-6">My Projects</h1>
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
             These are projects I've worked on to showcase my skills in Machine Learning, Data Engineering,
             and Application Development. Each project includes demos, accomplishments, and a description of
             some of the technical challenges I faced.

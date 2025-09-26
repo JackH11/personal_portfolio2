@@ -27,15 +27,15 @@ body {
 
 /* Blog content styles */
 .blog-content h2 {
-  @apply text-3xl font-bold text-gray-900 mb-4;
+  @apply text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4;
 }
 
 .blog-content p {
-  @apply text-lg text-gray-700 leading-relaxed mb-8;
+  @apply text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-8;
 }
 
 .blog-content h3 {
-  @apply text-2xl font-semibold text-gray-800 mb-3;
+  @apply text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-3;
 }
 
 /* Custom blog content classes */
@@ -44,17 +44,17 @@ body {
 }
 
 .blog-content .image-container img {
-  @apply w-full max-w-2xl mx-auto rounded-lg shadow-lg border border-gray-200;
+  @apply w-full max-w-2xl mx-auto rounded-lg shadow-lg border border-gray-200 dark:border-gray-700;
 }
 
 .blog-content .image-caption {
-  @apply text-sm text-gray-600 text-center mt-2 italic;
+  @apply text-sm text-gray-600 dark:text-gray-400 text-center mt-2 italic;
 }
 
 .blog-content .highlight-box {
-  @apply bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg my-6;
+  @apply bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-500 p-4 rounded-r-lg my-6;
 }
 
 .blog-content .code-block {
-  @apply bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm overflow-x-auto my-6;
+  @apply bg-gray-900 dark:bg-gray-800 text-green-400 p-4 rounded-lg font-mono text-sm overflow-x-auto my-6;
 }

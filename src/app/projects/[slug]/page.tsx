@@ -33,28 +33,28 @@ export default function ProjectDetail() {
   }
 
   return (
-    <section className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 py-20 px-4">
+    <section className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 py-20 px-4">
       <div className="max-w-4xl mx-auto">
         {/* Back to Projects Link */}
         <div className="mb-8">
           <Link 
             href="/projects" 
-            className="inline-flex items-center text-orange-600 hover:text-orange-800 font-medium"
+            className="inline-flex items-center text-orange-600 dark:text-orange-400 hover:text-orange-800 dark:hover:text-orange-300 font-medium"
           >
             ← Back to Projects
           </Link>
         </div>
 
         {/* Project Header */}
-        <div className="bg-white rounded-xl shadow-lg p-8 mb-8 border-l-4 border-orange-500">
+        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mb-8 border-l-4 border-orange-500 dark:border-orange-400">
           <div className="flex justify-between items-start mb-6">
-            <h1 className="text-4xl font-bold text-gray-900">{project.title}</h1>
-            <span className="bg-orange-100 text-orange-800 px-4 py-2 rounded-full text-lg font-medium">
+            <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100">{project.title}</h1>
+            <span className="bg-orange-100 dark:bg-orange-900/30 text-orange-800 dark:text-orange-300 px-4 py-2 rounded-full text-lg font-medium">
               {project.year}
             </span>
           </div>
           
-          <p className="text-xl text-gray-600 mb-6 leading-relaxed">
+          <p className="text-xl text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
             {project.description}
           </p>
           
@@ -62,7 +62,7 @@ export default function ProjectDetail() {
             {project.technologies.map((tech, index) => (
               <span 
                 key={index}
-                className="bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm font-medium"
+                className="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-full text-sm font-medium"
               >
                 {tech}
               </span>
@@ -101,11 +101,11 @@ export default function ProjectDetail() {
         {/* Project Details */}
         <div className="space-y-8">
           {/* Project Demo Video with Tabs */}
-          <div className="bg-white rounded-xl shadow-lg p-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Training Progress Demo</h2>
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">Training Progress Demo</h2>
             
             {/* Tab Description */}
-            <p className="text-gray-600 text-center mb-4 italic">
+            <p className="text-gray-600 dark:text-gray-300 text-center mb-4 italic">
               Watch the agent's learning progress from no training to fully trained
             </p>
 
@@ -113,15 +113,15 @@ export default function ProjectDetail() {
             <div className="flex items-center justify-center gap-6 mb-4">
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                <span className="text-gray-600">Agent</span>
+                <span className="text-gray-600 dark:text-gray-300">Agent</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 rounded-full bg-gray-400"></div>
-                <span className="text-gray-600">Obstacle</span>
+                <span className="text-gray-600 dark:text-gray-300">Obstacle</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                <span className="text-gray-600">Goal</span>
+                <span className="text-gray-600 dark:text-gray-300">Goal</span>
               </div>
             </div>
 
@@ -141,7 +141,7 @@ export default function ProjectDetail() {
                 >
                   Your browser does not support the video tag.
                 </video>
-                <p className="text-sm text-gray-600 mt-2">Randomly moving</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">Randomly moving</p>
             </div>
 
              
@@ -158,7 +158,7 @@ export default function ProjectDetail() {
                 >
                   Your browser does not support the video tag.
                 </video>
-                <p className="text-sm text-gray-600 mt-2">Learning to navigate</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">Learning to navigate</p>
               </div>
               
               
@@ -175,15 +175,15 @@ export default function ProjectDetail() {
                 >
                   Your browser does not support the video tag.
                 </video>
-                <p className="text-sm text-gray-600 mt-2">Optimal behavior</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">Optimal behavior</p>
               </div>
             </div>
           </div>
 
           {/* Long Description */}
-          <div className="bg-white rounded-xl shadow-lg p-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Project Overview</h2>
-            <div className="prose prose-lg text-gray-600 leading-relaxed">
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">Project Overview</h2>
+            <div className="prose prose-lg text-gray-600 dark:text-gray-300 leading-relaxed">
               The goal of this project was to develop a reinforcement learning agent that would learn how to navigate a 2D environment
               and reach a goal. The goal, the agent, and the obstacles could start at any position in the environment.
 
@@ -195,10 +195,10 @@ export default function ProjectDetail() {
           </div>
 
           {/* Challenges */}
-          <div className="bg-white rounded-xl shadow-lg p-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Observation Space</h2>
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">Observation Space</h2>
             <ul className="space-y-2">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Observation Space Approaches</h3>
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Observation Space Approaches</h3>
               <p>
                 One of the challenges of this project was the observation space. I thought of two possibe obsercation spaces:
                 1. Develop a grid-like sample of of the environment around the agent. Each grid component would get a
@@ -216,27 +216,27 @@ export default function ProjectDetail() {
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="text-center">
-                    <h4 className="text-md font-medium text-gray-800 mb-2">Grid</h4>
+                    <h4 className="text-md font-medium text-gray-800 dark:text-gray-200 mb-2">Grid</h4>
                     <img 
                       src="/projects/collision_avoidance/dots.png" 
                       alt="Grid-based observation space approach"
                       className="w-full h-auto rounded-lg shadow-md"
                     />
-                    <p className="text-sm text-gray-600 mt-2">Grid sampling with encoded values for walls, goals, and obstacles</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">Grid sampling with encoded values for walls, goals, and obstacles</p>
                   </div>
                   <div className="text-center">
-                    <h4 className="text-md font-medium text-gray-800 mb-2">Rays</h4>
+                    <h4 className="text-md font-medium text-gray-800 dark:text-gray-200 mb-2">Rays</h4>
                     <img 
                       src="/projects/collision_avoidance/rays.png" 
                       alt="Ray-based observation space approach"
                       className="w-full h-auto rounded-lg shadow-md"
                     />
-                    <p className="text-sm text-gray-600 mt-2">Ray casting with distance and velocity information</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">Ray casting with distance and velocity information</p>
                   </div>
                 </div>
               </div>
 
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Reward Shaping</h3>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Reward Shaping</h3>
               <p className="mb-4">
                 I had to take careful consideration when shaping the rewards. Natually, I wanted to give the agent a large
                 reward when the goal was reached and a large penalty when the agent hit an obstacle. I found I had to carefully
@@ -257,7 +257,7 @@ export default function ProjectDetail() {
                 Lastly, I included a small time penalty to encourage the agent to move fast.
               </p>
 
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">On-Policy vs Off-Policy</h3>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">On-Policy vs Off-Policy</h3>
               <p className="mb-4">
                 I tried two reinforcement learning algorithms: DQN and PPO. A core differene is DQN is
                 Off-policy while PPO is on-policy. Off-policy models can learn from any experiences collected at any point in time. 
@@ -283,11 +283,11 @@ export default function ProjectDetail() {
           </div>
 
           {/* Results */}
-          <div className="bg-white rounded-xl shadow-lg p-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Results & Impact</h2>
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">Results & Impact</h2>
             <ul className="space-y-2">
-              <li>Success rate of <strong>66%</strong> in the final model</li>
-              <li>Reduced average timesteps to completion from <strong>250</strong> to <strong>80</strong></li>
+              <li className="text-gray-600 dark:text-gray-300">Success rate of <strong>66%</strong> in the final model</li>
+              <li className="text-gray-600 dark:text-gray-300">Reduced average timesteps to completion from <strong>250</strong> to <strong>80</strong></li>
             </ul>
           </div>
         </div>
