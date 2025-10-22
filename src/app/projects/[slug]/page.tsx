@@ -187,8 +187,8 @@ export default function ProjectDetail() {
               The goal of this project was to develop a reinforcement learning agent that would learn how to navigate a 2D environment
               and reach a goal. The goal, the agent, and the obstacles could start at any position in the environment.
 
-              To achieve this, I used StableBaselines3 for the reinfocement learning agent and OpenAIs gymnasium to generate
-              and train the agent. I tried used both DQN and PPO models to build the agent. The number of obstacles was variable,
+              To achieve this, I used StableBaselines3 for the reinforcement learning agent and OpenAI's Gymnasium to generate
+              and train the agent. I tried using both DQN and PPO models to build the agent. The number of obstacles was variable,
               but for most of training, I used 10 obstacles to give the agent plenty of opportunity to learn while moving around
               them.
             </div>
@@ -200,15 +200,15 @@ export default function ProjectDetail() {
             <ul className="space-y-2">
             <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Observation Space Approaches</h3>
               <p>
-                One of the challenges of this project was the observation space. I thought of two possibe obsercation spaces:
-                1. Develop a grid-like sample of of the environment around the agent. Each grid component would get a
+                One of the challenges of this project was the observation space. I thought of two possible observation spaces:
+                1. Develop a grid-like sample of the environment around the agent. Each grid component would get an
                 encoded value indicating whether the location was a wall, goal, or obstacle. The grid component would also
-                recieve horizontal and vertical velocity information.
+                receive horizontal and vertical velocity information.
                 2. Create rays around the agent that indicate the distance to the nearest wall or obstacle. Also include
                 normal and tangential velocity information of whatever the ray is hitting.
 
-                Option 1 provides more information to the agent and doesn't limit it's vision to what's immediately around it, 
-                since the agent's "vision" woudn't be blocked by the obstacles it hit. Option 2 for included less information
+                Option 1 provides more information to the agent and doesn't limit its vision to what's immediately around it, 
+                since the agent's "vision" wouldn't be blocked by the obstacles it hit. Option 2 included less information
               </p>
 
               {/* Observation Space Images */}
@@ -238,46 +238,46 @@ export default function ProjectDetail() {
 
               <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Reward Shaping</h3>
               <p className="mb-4">
-                I had to take careful consideration when shaping the rewards. Natually, I wanted to give the agent a large
+                I had to take careful consideration when shaping the rewards. Naturally, I wanted to give the agent a large
                 reward when the goal was reached and a large penalty when the agent hit an obstacle. I found I had to carefully
-                balance the reward and penalty to encourage the agent move quickly towards the goal, but also take the time to avoid
+                balance the reward and penalty to encourage the agent to move quickly towards the goal, but also take the time to avoid
                 obstacles if needed. At a reward of 1000 and collision penalty of -150, I found the agent was not conservative enough
-                and was willing to risk a collision to reach the goal. In a real life scenario like a driverless car, that's no acceptable.
-                I increased the penalty to -500 which yieled and agent that was less willing to risk collision.
+                and was willing to risk a collision to reach the goal. In a real life scenario like a driverless car, that's not acceptable.
+                I increased the penalty to -500 which yielded an agent that was less willing to risk collision.
               </p>
 
               <p className="mb-4">
-                With the above settings, the agent only recieves a reward at the end of the episode. This is tricky for RL algorithms, since
-                for most of the episode the agent recieves 0 feedback. It has little guidance about what's good or bad until it reaches the end.
+                With the above settings, the agent only receives a reward at the end of the episode. This is tricky for RL algorithms, since
+                for most of the episode the agent receives 0 feedback. It has little guidance about what's good or bad until it reaches the end.
                 To address this, I implemented a very small reward for moving towards the goal and small penalty for moving away. This gives the
                 agent more signal to learn from. If it's closer to the goal that's generally better!
               </p>
 
               <p className="mb-6">
-                Lastly, I included a small time penalty to encourage the agent to move fast.
+                Lastly, I included a small time penalty to encourage the agent to move quickly.
               </p>
 
               <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">On-Policy vs Off-Policy</h3>
               <p className="mb-4">
-                I tried two reinforcement learning algorithms: DQN and PPO. A core differene is DQN is
-                Off-policy while PPO is on-policy. Off-policy models can learn from any experiences collected at any point in time. 
+                I tried two reinforcement learning algorithms: DQN and PPO. A core difference is DQN is
+                off-policy while PPO is on-policy. Off-policy models can learn from any experiences collected at any point in time. 
                 On-policy models only learn from experiences that are collected with the current policy.
               </p>
 
               <p className="mb-4">
-                Imagine I was learning to football
+                Imagine I was learning football
                 and had years of training tapes of my plays. Should I study and learn from only my most recent games? Or should I continue to
-                learn from all of my games good or bad over the years. PPO might study from only the most recent, while DQN would study from all of them.
+                learn from all of my games, good or bad, over the years? PPO might study from only the most recent, while DQN would study from all of them.
               </p>
 
               <p className="mb-4">
                 This makes PPO very sample inefficient, since it throws away a lot of the old data it collected. The benefit of PPO is that the learning
-                is generally more stable since it's learning from it's most recent experiences, which is most likely the best solution.
+                is generally more stable since it's learning from its most recent experiences, which is most likely the best solution.
               </p>
 
               <p className="mb-4">
                 I found the PPO model took significantly longer to train than the DQN model, but exhibited stable growth and didn't require fine tuning. 
-                The DQN model requires exploration rate and learning rate schedule to fine tune what they learn and avoid getting stuck in local optima. 
+                The DQN model requires exploration rate and learning rate schedules to fine tune what it learns and avoid getting stuck in local optima. 
               </p>
             </ul>
           </div>
