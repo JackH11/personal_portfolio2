@@ -13,6 +13,19 @@ export default function BlogPage() {
   const blogPosts = [
     {
       id: 1,
+      title: "Data Federation: Unifying Disparate Data Sources",
+      excerpt: "An exploration of data federation architecture, its benefits, challenges, and real-world applications in modern data systems.",
+      content: "Data federation is a data integration architecture that provides a unified view of data from multiple sources...",
+      author: "Jack Hasselbring",
+      date: "January 2025",
+      readTime: "8 min read",
+      category: "Data Engineering",
+      tags: ["Data Federation", "Data Architecture", "Distributed Systems"],
+      featured: true,
+      slug: "data-federation"
+    },
+    {
+      id: 2,
       title: "Understanding Convolutional Neural Networks (CNNs)",
       excerpt: "A comprehensive guide to CNNs, exploring their architecture, applications, and implementation details. Learn about convolutional layers, pooling, and practical PyTorch implementation.",
       content: "Convolutional Neural Networks (CNNs) have revolutionized the field of computer vision...",

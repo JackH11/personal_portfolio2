@@ -6,6 +6,159 @@ import { use } from 'react'
 
 // Blog post metadata with embedded HTML content
 const blogPosts = {
+  'data-federation': {
+    title: "Data Federation: Unifying Disparate Data Sources",
+    excerpt: "An exploration of data federation architecture, its benefits, challenges, and real-world applications in modern data systems.",
+    author: "Jack Hasselbring",
+    date: "January 2025",
+    readTime: "8 min read",
+    category: "Data Engineering",
+    tags: ["Data Federation", "Data Architecture", "Distributed Systems"],
+    content: `
+      <h2 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">Introduction</h2>
+      <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+      Modern Enterprises generate and maintain massive amounts of data distributed across many systems. A well-functioning organization requires these systems to exchange and coalesce information to derive business insights. Studies have reported the global market will be larger than 150B USD in 2025 (<a href="https://www.thebusinessresearchcompany.com/report/enterprise-storage-global-market-report" class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300" target="_blank" rel="noopener noreferrer">source</a>), and another study found that IT teams report spending over 30% of their budget on data storage, backup, and recovery (<a href="https://www.komprise.com/glossary_terms/data-storage-costs/" class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300" target="_blank" rel="noopener noreferrer">source</a>). This need will only grow as data-hungry deep neural networks play an increasing role in business. Unnecessarily copying data at this scale can result in massive costs and lead to competing sources of truth, which can paralyze business insights.
+      </p>
+
+      <h2 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">Lift and Shift</h2>
+      <div class="my-8">
+        <div class="flex justify-center items-start">
+          <div class="text-center">
+            <img 
+              src="/blog-posts/data_federation/lift_and_shift.svg" 
+              alt="Lift and Shift illustration"
+              class="w-full max-w-[600px] mx-auto"
+            />
+            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2 italic">
+              Figure 1: Lift and Shift
+            </p>
+          </div>
+        </div>
+      </div>
+      <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+      In the past, a common solution was to move all the data to a single location, sometimes referred to as "Lift and Shift". The advantage is the data is now located in a single space for business analysts to immediately work with. The drawback is this process can be slow, duplicate data, and continuously use compute resources to move data from one location to another, all of which drive up costs. The central domain may also experience some lag in data freshness, as information needs to be copied or streamed in periodically.
+      </p>
+
+      <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+      A secondary pitfall of moving everything to a central data lake is Vendor Lock-In: an enterprise becomes so dependent on a single platform that it presents a major security, financial, or technical challenge to move to another solution.
+      </p>
+
+      <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+      All these aspects have driven interest in Federated Data Architectures, which allows a system to interact with data where it exists without migrating it to a new location.
+      </p>
+
+      <h2 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">What is a Federated Data Architecture?</h2>
+      <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+      Data Federation provides a unified view of many data sources in a single location without the step of moving any data. This eliminates data duplication and expensive data transfer pipelines. A federation engine can connect to multiple systems in an enterprise and query multiple data sources in real time, resulting in a seamless experience where users can access all relevant information without switching between systems.
+      </p>
+
+      <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+      This style of architecture reduces the need for costly data copies between different systems. Data federation is even more important in today's world of multiple competing cloud platforms where data is spread out (<a href="https://bix-tech.com/data-federation-explained-query-anywhere-cut-costs-and-deliver-real-time-insights/" class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300" target="_blank" rel="noopener noreferrer">source</a>).
+      </p>
+
+      <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+      Additionally, properly implemented data federation can help to avoid vendor lock-in. Since it allows a company to query, govern, and manage data without relocating or reformatting it, enterprises don't have to spend resources migrating data before they're consumed by new analytical tools. A well-designed federated architecture can sit above any individual vendor. If you switch vendors, the query interface and security remain the same. Figure 3 shows how a company could swap a vendor's application out without having to move any data.
+      </p>
+
+      <div class="my-8">
+        <div class="flex justify-center items-start">
+          <div class="text-center">
+            <img 
+              src="/blog-posts/data_federation/vendor_lock_in.svg" 
+              alt="Vendor Lock-In illustration"
+              class="w-full max-w-[600px] mx-auto"
+            />
+            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2 italic">
+              Figure 2: Vendor Lock-In
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+      A potential case where a company wants to switch their CRM vendor for some reason. The federated data architecture above allows them to do so without migrating any data. This makes the switch between vendors simpler, and eliminates all the costs and risks with large scale data migration.
+      </p>
+
+      <h2 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">Virtual Tables</h2>
+      <div class="my-8">
+        <div class="flex justify-center items-start">
+          <div class="text-center">
+            <img 
+              src="/blog-posts/data_federation/virtual_table.svg" 
+              alt="Virtual Table illustration"
+              class="w-full max-w-[600px] mx-auto"
+            />
+            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2 italic">
+              Figure 3: Virtual Table
+            </p>
+          </div>
+        </div>
+      </div>
+      <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+      A key innovation enabling this architecture is the Virtual Table. A Virtual Table is a logical representation of data that behaves like a table, but doesn't store any data. The data is stored in another source that the virtual table accesses through a logical view. It handles accessing the true data source, translating your query in a language the source can understand, and displaying the result back to the user. You might think of it as projecting data onto a screen as seen in figure 2. The key takeaway is that a virtual table doesn't store data, but serves as an interface between backing systems and the user.
+      </p>
+
+      <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+      A single query engine aggregates data from one or many data sources, then projects that information to the user without moving any of the stored data. The user doesn't know any difference.
+      </p>
+
+      <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+      When you run a query, the federation engine builds a logical plan on how to fetch the data from different sources (such as Snowflake, Postgres, or other APIs). A key point to note is that the engine is highly flexible on the systems it's able to import from. The engine is capable of querying the various data sources, allowing expensive computation to be performed where it's most efficient. The compiled data is returned to the user in the virtual table.
+      </p>
+
+      <h2 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">Iceberg Tables</h2>
+      <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+      Iceberg is a table format specification created by Netflix and open-sourced to the Apache Foundation in 2018. It gained popularity and is now a popular format used by enterprise software such as Snowflake, AWS, and Foundry.
+      </p>
+
+      <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+      This table format introduced several technical innovations, but for simplicity, it could be thought of like a standardized wall outlet. Similar to the outlet, by conforming to a single design, a table opens itself up to be easily consumed by many applications (<a href="https://iceberg.apache.org/" class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300" target="_blank" rel="noopener noreferrer">source</a>).
+      </p>
+
+      <h2 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">Metadata Catalog</h2>
+      <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+      How does the federation engine know what's available and where to look? A Metadata Catalog tells the query engine what data exists, where it lives, and how to interpret it. It does not store any of the actual data. It's like a shopping list the data federation has access to and can pull from. Real world examples include Unity Catalog (Databricks), AWS Glue Data Catalog, and Hive Metastore (Hadoop) (<a href="https://aws.amazon.com/what-is/data-catalog/" class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300" target="_blank" rel="noopener noreferrer">source</a>).
+      </p>
+
+      <h2 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">Real World Implementations of Data Federation</h2>
+      
+      <h3 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-3 mt-6">Salesforce</h3>
+      <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+      In the link below, Salesforce refers to zero-copy data federation, meaning you can seamlessly access all data without moving it. In <a href="https://www.salesforce.com/blog/unlock-trapped-data-in-your-data-lakes-introducing-zero-copy-file-federation-in-data-cloud/" class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300" target="_blank" rel="noopener noreferrer">this article</a>, Salesforce highlights the importance of "data fluidity" by calling out the seamless movement of data between multiple data sources. Their concept of "File Federation" enables data specialists to modify external tables within Salesforce without creating redundant copies. In the link below, they make an external table available to a data specialist, who can modify it from the Salesforce platform without needing to save any extra data outside of the source.
+      </p>
+
+      <h3 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-3 mt-6">Snowflake</h3>
+      <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+      Snowflake has a capability called "External tables". Instead of storing the data directly, Snowflake queries that table and provides it to the user as if it were available there. A user of this feature will incur no Snowflake storage costs. Snowflake also supports iceberg tables, which reach out to external storage locations like Amazon S3, Google Cloud Storage, or Azure Storage. A limitation here is that external tables are read-only (<a href="https://docs.snowflake.com/en/user-guide/tables-external-intro" class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300" target="_blank" rel="noopener noreferrer">source</a>, <a href="https://docs.snowflake.com/en/user-guide/tables-iceberg" class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300" target="_blank" rel="noopener noreferrer">Iceberg source</a>).
+      </p>
+
+      <h3 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-3 mt-6">Palantir</h3>
+      <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+      Palantir's concept of this architecture is referred to as the "Multi Modal Data Plane" (<a href="https://www.palantir.com/interoperability/" class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300" target="_blank" rel="noopener noreferrer">source</a>). This creates a data layer that spans any storage and compute environment. The most important part: data remains in existing systems while analytics, models, or any other business intelligence tools run where they're suited best. An analyst may interact with a single virtual data layer, unaware that the data is actually coming from multiple systems.
+      </p>
+
+      <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+      Additionally, Palantir has its implementation of <a href="https://www.palantir.com/docs/foundry/data-integration/virtual-tables" class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300" target="_blank" rel="noopener noreferrer">virtual tables</a>, where users can query data in supported platforms without first having to store that in the Foundry. Repeated in this pattern, the configuration and controls of the source system are removed from the users, and they only need to work with the Foundry platform. Palantir Foundry also supports tables as outputs, which means transforms performed in Foundry can be written back to their external service.
+      </p>
+
+      <h2 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">Conclusion</h2>
+      <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+      As enterprises scale, the amount of data scattered across systems continues to grow. Copying or moving this data around is expensive, slow, and introduces lag between when data is generated and when it's available for analysis. Federated Data Architectures solve this by letting teams query and work with data where it already lives, without duplicating it.
+      </p>
+
+      <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+      Technologies like Virtual Tables, Iceberg Tables, and centralized metadata catalogs make this possible. They allow queries to reach into different systems, combine results, and return them as if they came from a single source. This approach reduces infrastructure costs, simplifies data governance, and helps avoid vendor lock-in.
+      </p>
+
+      <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+      In practice, platforms like Palantir, Snowflake, and Salesforce have already built these capabilities into their ecosystems, showing how zero-copy federation can make enterprise data more fluid and accessible.
+      </p>
+
+      <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+      Federated architectures shift the focus from moving data to connecting it, which helps organizations get value from their information faster, with less overhead and greater flexibility as they evolve.
+      </p>
+    `
+  },
   'understanding-cnns': {
     title: "Convolutional Neural Networks",
     excerpt: "A simple introduction to CNNs, exploring their architecture, applications, and implementation details.",
