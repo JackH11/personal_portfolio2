@@ -13,11 +13,11 @@ export default function BlogPage() {
   const blogPosts = [
     {
       id: 1,
-      title: "Data Federation: Unifying Disparate Data Sources",
+      title: "Data Federation and the Modern Connected Enterprise",
       excerpt: "An exploration of data federation architecture, its benefits, challenges, and real-world applications in modern data systems.",
       content: "Data federation is a data integration architecture that provides a unified view of data from multiple sources...",
       author: "Jack Hasselbring",
-      date: "January 2025",
+      date: "November 2025",
       readTime: "8 min read",
       category: "Data Engineering",
       tags: ["Data Federation", "Data Architecture", "Distributed Systems"],
