@@ -7,10 +7,10 @@ import { use } from 'react'
 // Blog post metadata with embedded HTML content
 const blogPosts = {
   'data-federation': {
-    title: "Data Federation: Unifying Disparate Data Sources",
+    title: "Data Federation and the Modern Connected Enterprise",
     excerpt: "An exploration of data federation architecture, its benefits, challenges, and real-world applications in modern data systems.",
     author: "Jack Hasselbring",
-    date: "January 2025",
+    date: "November 2025",
     readTime: "8 min read",
     category: "Data Engineering",
     tags: ["Data Federation", "Data Architecture", "Distributed Systems"],
